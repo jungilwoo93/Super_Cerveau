@@ -1,4 +1,4 @@
-package application;
+package fr.ensisa.supercerveau.application;
 	
 import javafx.application.Application;
 import javafx.stage.Stage;
