@@ -19,10 +19,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import fr.ensisa.supercerveau.model.util.Constantes;
+
 public class MainPrincipe extends JFrame{
-	private int nbPlayer=0;
+	private int nbPlayer=1;
 	private WindowsPlayer wp;
 	private boolean newWindows=false;
+	private int sujetChoiced;
+	String[] sujets = Constantes.CATEGORIES;
 	public MainPrincipe() throws IOException {
 		super("Super Cerveau");
 		WindowListener l =new WindowAdapter() {
@@ -33,32 +37,38 @@ public class MainPrincipe extends JFrame{
 		
 		JButton button = new JButton("Let's Go!");
 		String[] elements = { "1", "2", "3", "4"};
+		
 		JComboBox jCombo = new JComboBox(elements);
 		jCombo.setBackground(Color.WHITE);
+		jCombo.setSelectedIndex(0);
 		JLabel label = new JLabel("Multi-Joueur");
+		JLabel sujet = new JLabel("Sujets");
+		JComboBox sujetCombo = new JComboBox(sujets);
+		sujetCombo.setSelectedIndex(0);
 		JPanel panneau = new JPanel();
 		BufferedImage logoImage=ImageIO.read(new File("src\\image\\logo.png"));
 		JLabel logo = new JLabel(new ImageIcon(logoImage));
 		
 		jCombo.addActionListener(new ActionListener () {
 		    public void actionPerformed(ActionEvent e) {
-		    	nbPlayer = jCombo.getSelectedIndex();
-		    	try {
-					wp = new WindowsPlayer(nbPlayer+1);
-					newWindows=true;
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
+		    	nbPlayer = jCombo.getSelectedIndex()+1;
+		    	sujetChoiced = sujetCombo.getSelectedIndex();
 		    }
 		});
 		
 		button.addActionListener(new ActionListener() {
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
-	           wp.setBackground(Color.WHITE);
-	           wp.setSize(1000,1000);
-	           wp.setResizable(false);
-	           wp.setVisible(true);
+	        	try {
+					wp=new WindowsPlayer(nbPlayer,sujetChoiced);
+					wp.setBackground(Color.WHITE);
+			        wp.setSize(1200,700);
+			        wp.setResizable(false);
+			        wp.setVisible(true);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+	           
 	        }
 
 	    });
@@ -67,15 +77,20 @@ public class MainPrincipe extends JFrame{
 		panneau.add(jCombo);
 		panneau.add(label);
 		panneau.add(logo);
+		panneau.add(sujetCombo);
+		panneau.add(sujet);
 		panneau.setBackground(Color.WHITE);
 		setContentPane(panneau);
 		panneau.setLayout(null);
 		logo.setBounds(50, 10, 400, 300);
 		label.setBounds(150,300, 100, 30);
 		jCombo.setBounds(280,300,80,30);
-		button.setBounds(200, 350, 100, 30);
+		button.setBounds(200, 400, 100, 30);
+		sujetCombo.setBounds(280, 350, 80, 30);
+		sujet.setBounds(150, 350, 100, 30);
 		setSize(500,500);
-		
+		setVisible(true);
+		setResizable(false);
 		
 	}
 	
@@ -89,9 +104,7 @@ public class MainPrincipe extends JFrame{
 
 	public static void main(String[] args) throws IOException {
 		JFrame frame = new MainPrincipe();
-		frame.setVisible(true);
-		frame.setResizable(false);
-		frame.setBackground(Color.DARK_GRAY);
+		
 	}
 
 	
