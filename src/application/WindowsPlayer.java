@@ -21,6 +21,8 @@ import javax.swing.JPanel;
 import fr.ensisa.supercerveau.model.player.Player;
 import fr.ensisa.supercerveau.model.player.Score;
 import fr.ensisa.supercerveau.model.util.Constantes;
+import fr.ensisa.supercerveau.model.questions.Question;
+import fr.ensisa.supercerveau.model.questions.QuestionFactory;
 
 
 public class WindowsPlayer extends JFrame{
@@ -37,12 +39,13 @@ public class WindowsPlayer extends JFrame{
 				 System.exit(0);
 			 }
 		};
+		
 		this.nbPlayer = nb;
 		this.sujetChoiced = sujet;
 		players= new ArrayList<Player>();
 		labels = new ArrayList<JLabel>();
 		JPanel panneau = new JPanel();
-
+		Question questions=QuestionFactory.createQuestion(sujetChoiced);
 		for(int i =1;i<=nbPlayer;i++) {
 			String namePlayer="Joueur "+i;
 			Player player = new Player(namePlayer);
@@ -59,7 +62,14 @@ public class WindowsPlayer extends JFrame{
 		ImageIcon img = new ImageIcon(new ImageIcon("src\\image\\logo.png").getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT));
 		JLabel logo = new JLabel(img);
 		panneau.add(logo);
-		
+		JButton play=new JButton("Play !");
+		panneau.add(play);
+		JLabel question =new JLabel("Questions sur le sujet : ");
+		JLabel sujetChoix = new JLabel(sujets[sujetChoiced]);
+		JLabel questionLabel= new JLabel(questions.returnEnonce());
+		panneau.add(questionLabel);
+		panneau.add(question);
+		panneau.add(sujetChoix);
 		for(int i = 0; i<labels.size();i++) {
 			panneau.add(labels.get(i));
 		}
@@ -72,8 +82,22 @@ public class WindowsPlayer extends JFrame{
 		for(int i = 0; i<labels.size();i+=2) {
 			labels.get(i).setBounds(30, 210+i*45, 100, 30);
 			labels.get(i+1).setBounds(130, 210+i*45, 100, 30);
+			if(i==labels.size()-2) {
+				if(i==0) {
+					question.setBounds(30,280,150,30);
+					sujetChoix.setBounds(30,300,100,30);
+					play.setBounds(30, 335, 100, 30);
+				}else {
+					question.setBounds(30,210+i*70,150,30);
+					sujetChoix.setBounds(30,210+i*90,100,30);
+					play.setBounds(30, 210+i*105, 100, 30);
+				}
+			}
 		}
-
+		
+		 
+		
+		
 	}
 
 	public int getNbPlayer() {

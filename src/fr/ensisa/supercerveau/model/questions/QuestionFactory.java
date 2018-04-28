@@ -2,11 +2,11 @@ package fr.ensisa.supercerveau.model.questions;
 
 public class QuestionFactory {
 
-	public static Question createQuestion()
+	public static Question createQuestion(int categorie)
 	{
-		int questionType= (int)(Math.random()*3);
+		//int questionType= (int)(Math.random()*3);
 		Question question;
-		switch(questionType)
+		switch(categorie)
 		{
 			case 0 : 	question=new QuestionCapitale();
 						break;

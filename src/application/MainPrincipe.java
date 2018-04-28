@@ -62,7 +62,7 @@ public class MainPrincipe extends JFrame{
 	        	try {
 					wp=new WindowsPlayer(nbPlayer,sujetChoiced);
 					wp.setBackground(Color.WHITE);
-			        wp.setSize(1200,700);
+			        wp.setSize(1200,1000);
 			        wp.setResizable(false);
 			        wp.setVisible(true);
 				} catch (IOException e1) {
@@ -84,10 +84,10 @@ public class MainPrincipe extends JFrame{
 		panneau.setLayout(null);
 		logo.setBounds(50, 10, 400, 300);
 		label.setBounds(150,300, 100, 30);
-		jCombo.setBounds(280,300,80,30);
+		jCombo.setBounds(280,300,120,30);
 		button.setBounds(200, 400, 100, 30);
-		sujetCombo.setBounds(280, 350, 80, 30);
-		sujet.setBounds(150, 350, 100, 30);
+		sujetCombo.setBounds(280, 350, 120, 30);
+		sujet.setBounds(150, 350, 120, 30);
 		setSize(500,500);
 		setVisible(true);
 		setResizable(false);

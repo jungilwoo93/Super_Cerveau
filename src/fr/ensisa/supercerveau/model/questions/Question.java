@@ -36,8 +36,8 @@ public abstract class Question {
 			}
 		}
 		// Affiche questions + réponses
-		System.out.println("Question de "+Constantes.CATEGORIES[this.categorie]);
-		System.out.println(enonce);
+		//System.out.println("Question de "+Constantes.CATEGORIES[this.categorie]);
+		//System.out.println(enonce);
 		for(int i=0;i<Constantes.NB_REPONSES;i++)
 		{
 			System.out.println((i+1)+") "+reponses[i]);
@@ -60,6 +60,10 @@ public abstract class Question {
 			System.out.println("NON, LA BONNE RÉPONSE ÉTAIT : "+this.bonneReponse);
 		}
 		return score;
+	}
+	
+	public String returnEnonce() {
+		return this.enonce;
 	}
 	
 	protected boolean reponseAbsente(String nouvelleReponse)
