@@ -18,6 +18,24 @@ public abstract class Question {
 		this.mauvaisesReponses= new String[3];
 	}
 	
+	public String[] stockQuestions() {
+		String[] reponses= new String[4];
+		Arrays.fill(reponses, null);
+		int bonneReponseIndex = (int)(Math.random()*Constantes.NB_REPONSES);
+		reponses[bonneReponseIndex]=bonneReponse;
+		int mauvaisesReponsesPlacees=0;
+		while(mauvaisesReponsesPlacees<Constantes.NB_REPONSES-1)
+		{
+			int index=(int)(Math.random()*Constantes.NB_REPONSES);
+			if(reponses[index]==null)
+			{
+				reponses[index]=mauvaisesReponses[mauvaisesReponsesPlacees];
+				mauvaisesReponsesPlacees++;
+			}
+		}
+		return reponses;
+	}
+	
 	public int ask(Scanner entry)
 	{
 		//Place les réponses dans le désordre

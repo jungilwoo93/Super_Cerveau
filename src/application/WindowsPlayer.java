@@ -2,6 +2,8 @@ package application;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -17,6 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 
 import fr.ensisa.supercerveau.model.player.Player;
 import fr.ensisa.supercerveau.model.player.Score;
@@ -28,6 +31,7 @@ import fr.ensisa.supercerveau.model.questions.QuestionFactory;
 public class WindowsPlayer extends JFrame{
 	private int nbPlayer;
 	private int sujetChoiced;
+	private JPanel panel;
 	private String[] sujets = Constantes.CATEGORIES;
 	//Map<JLabel,JLabel> players;
 	ArrayList<Player> players;
@@ -45,7 +49,7 @@ public class WindowsPlayer extends JFrame{
 		players= new ArrayList<Player>();
 		labels = new ArrayList<JLabel>();
 		JPanel panneau = new JPanel();
-		Question questions=QuestionFactory.createQuestion(sujetChoiced);
+		
 		for(int i =1;i<=nbPlayer;i++) {
 			String namePlayer="Joueur "+i;
 			Player player = new Player(namePlayer);
@@ -66,13 +70,21 @@ public class WindowsPlayer extends JFrame{
 		panneau.add(play);
 		JLabel question =new JLabel("Questions sur le sujet : ");
 		JLabel sujetChoix = new JLabel(sujets[sujetChoiced]);
-		JLabel questionLabel= new JLabel(questions.returnEnonce());
-		panneau.add(questionLabel);
 		panneau.add(question);
 		panneau.add(sujetChoix);
 		for(int i = 0; i<labels.size();i++) {
 			panneau.add(labels.get(i));
 		}
+		play.addActionListener(new ActionListener() {
+	        @Override
+	        public void actionPerformed(ActionEvent e) {
+	        	panel =setQuestionPanel();
+	        	panneau.add(panel);
+	        	panel.setBounds(200, 180, 900, 800);
+	        	panel.setBackground(Color.WHITE);
+	        }
+
+	    });
 		
 		panneau.setBackground(Color.WHITE);
 		setContentPane(panneau);
@@ -94,10 +106,6 @@ public class WindowsPlayer extends JFrame{
 				}
 			}
 		}
-		
-		 
-		
-		
 	}
 
 	public int getNbPlayer() {
@@ -108,5 +116,30 @@ public class WindowsPlayer extends JFrame{
 		this.nbPlayer = nbPlayer;
 	}
 	
+	public JPanel setQuestionPanel() {
+		JPanel panneau = new JPanel();
+		Question questions=QuestionFactory.createQuestion(sujetChoiced);
+		JLabel questionLabel= new JLabel("Question : " +questions.returnEnonce());
+		String[] reponses =questions.stockQuestions();
+		JRadioButton reponse1=new JRadioButton(reponses[0]);
+		JRadioButton reponse2=new JRadioButton(reponses[1]);
+		JRadioButton reponse3=new JRadioButton(reponses[2]);
+		JRadioButton reponse4=new JRadioButton(reponses[3]);
+		panneau.add(questionLabel);
+		panneau.add(reponse1);
+		panneau.add(reponse2);
+		panneau.add(reponse3);
+		panneau.add(reponse4);
+		questionLabel.setBounds(100,40,600,60);
+		reponse1.setBounds(100, 140, 600, 60);
+		reponse1.setBackground(Color.WHITE);
+		reponse2.setBounds(100, 240, 600, 60);
+		reponse2.setBackground(Color.WHITE);
+		reponse3.setBounds(100,340 , 600, 60);
+		reponse3.setBackground(Color.WHITE);
+		reponse4.setBounds(100, 440, 600, 60);
+		reponse4.setBackground(Color.WHITE);
+		return panneau;
+	}
 	
 }
