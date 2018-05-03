@@ -15,8 +15,6 @@ public class QuestionFactory {
 			default : 	question= new QuestionChampionnatFranceFootball();
 						break;
 		}
-		//question= new QuestionChampionnatFranceFootball();
-		//question=new QuestionCapitale();
 		return question;
 	}
 	
