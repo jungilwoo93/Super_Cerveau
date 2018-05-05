@@ -8,7 +8,7 @@ public class QuestionFactory {
 		Question question;
 		switch(categorie)
 		{
-			case 0:	question =new QuestionDessinAnimee();
+			case 0 :	question =new QuestionPeinture();
 			break;
 			/*case 0 : 	question=new QuestionCapitale();
 						break;
