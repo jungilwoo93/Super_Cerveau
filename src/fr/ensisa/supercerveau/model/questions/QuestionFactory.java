@@ -8,10 +8,12 @@ public class QuestionFactory {
 		Question question;
 		switch(categorie)
 		{
-			case 0 : 	question=new QuestionCapitale();
+			case 0:	question =new QuestionDessinAnimee();
+			break;
+			/*case 0 : 	question=new QuestionCapitale();
 						break;
 			case 1 :	question=new QuestionRoiEtPredecesseur();
-			break;			
+			break;	*/		
 			default : 	question= new QuestionChampionnatFranceFootball();
 						break;
 		}

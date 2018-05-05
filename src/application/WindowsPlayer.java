@@ -2,6 +2,7 @@ package application;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -97,20 +98,18 @@ public class WindowsPlayer extends JFrame{
 	        	next.addActionListener(new ActionListener() {
 	    			@Override
 	    			public void actionPerformed(ActionEvent e) {
-	    				//int choix = panelQuestion.getReponseChoix();
-	    				//System.out.println("choix:"+choix);
+	    				int choix = panelQuestion.getReponseChoix();
+    					System.out.println(choix);
 	    				if(panelQuestion.envoyerReponse()) {
-	    					System.out.println("coucou");
 	    					players.get(currentPlayer-1).addPoint();
+	    					Rectangle r = labels.get((currentPlayer-1)*2+1).getBounds();
 	    					labels.get((currentPlayer-1)*2+1).setVisible(false);
-	    					System.out.println("player:"+currentPlayer);
-	    					System.out.println("index:"+((currentPlayer-1)*2+1));
 	    					labels.add((currentPlayer-1)*2+1, new JLabel(players.get(currentPlayer-1).getScore().toString()));
 	    					labels.remove(currentPlayer*2);
-	    					System.out.println("score:"+players.get(currentPlayer-1).getScore().toString());
+	    					panneau.add(labels.get((currentPlayer-1)*2+1));
+	    					labels.get((currentPlayer-1)*2+1).setBounds(r);
 	    					labels.get((currentPlayer-1)*2+1).setVisible(true);
 	    				}
-	    				System.out.println("bello");
 	    				currentPlayer++;
 	    			    panel.setVisible(false);
 	    			    panneau.remove(joueurAJouer);
@@ -118,7 +117,7 @@ public class WindowsPlayer extends JFrame{
 	    					currentPlayer=1;
 	    				}
 	    				panel = panelQuestion.setQuestionPanel();
-	    				joueurAJouer = panelQuestion.setJoueurLabel(currentPlayer);//xian shi bu zheng que
+	    				joueurAJouer = panelQuestion.setJoueurLabel(currentPlayer);
 	    				
 	    	        	panneau.add(joueurAJouer);
 	    				panneau.add(panel);

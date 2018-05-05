@@ -44,6 +44,9 @@ public abstract class Question {
 		{
 			return true;
 		}
+		if(reponseChoix==-1) {
+			return false;
+		}
 		return false;
 	}
 	//retourner la question
