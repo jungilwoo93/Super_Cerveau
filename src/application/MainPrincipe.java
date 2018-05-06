@@ -56,7 +56,7 @@ public class MainPrincipe extends JFrame{
 		    }
 		});
 		
-		//un JCombobox pour le sujet
+		//un JCombobox pour les sujets
 		JLabel sujet = new JLabel("Sujets");
 		JComboBox sujetCombo = new JComboBox(sujets);
 		sujetCombo.setSelectedIndex(0);
@@ -66,7 +66,7 @@ public class MainPrincipe extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				sujetChoiced = sujetCombo.getSelectedIndex();
-				// sujet qu'on choisit
+				//le sujet qu'on choisit
 				if(sujetChoiced==Constantes.HAZARD) {
 					//si on veux un sujet au hazard
 					Random i = new Random();
