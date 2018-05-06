@@ -9,6 +9,11 @@ public abstract class Constantes {
 	public static final int NB_QUESTIONS_TOTAL=40;
 	
 	/**
+	 * Nombre de point avant la victoire
+	 */
+	public static final int SCORE_WIN = 20;
+	
+	/**
 	 * Nombre de réponses proposées pour chaque question
 	 */
 	public static final int NB_REPONSES=4;

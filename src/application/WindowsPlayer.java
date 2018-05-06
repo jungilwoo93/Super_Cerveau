@@ -81,8 +81,9 @@ public class WindowsPlayer extends JFrame{
 	        	PanelQuestion panelQuestion = new PanelQuestion(nbPlayer,sujet);
 	        	JButton next=new JButton("Next");
 	        	panneau.add(next);
-	        	next.setBounds(600, 900, 100, 30);
 	        	
+	        	next.setBounds(play.getBounds().getBounds()); //on place le bouton next sur les coordonnées du bouton play
+	        	play.setVisible(false); //on cache le bouton play
 	        	if(firstQuestion==0) {
 	        		try {
 						panel = panelQuestion.setQuestionPanel();
