@@ -12,7 +12,7 @@ public class QuestionFilm extends Question {
 	public QuestionFilm()
 	{
 		super(Constantes.FILM);
-		//Récupère toutes les films et pays
+		//Récupère toutes les films et le type de film
 		String requete = "select ?nom ?type where { ?films a <http://dbpedia.org/ontology/Film>. "
 				+ "?films <http://www.w3.org/2000/01/rdf-schema#label> ?nom. "
 				+ "?films <http://dbpedia.org/ontology/genre> ?genre. "

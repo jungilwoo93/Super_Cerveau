@@ -49,8 +49,11 @@ public class QuestionDessinAnimee extends Question {
 		}
 		else
 		{
-
-			this.enonce = "Quel "+ligne.getLiteral("?description").getString()+" ?";
+			String descriptionCourte = ligne.getLiteral("?description").getString();
+			Pattern pattern = Pattern.compile("(est.*\\.)");
+	        Matcher matcher = pattern.matcher(descriptionCourte);
+	        matcher.find();
+			this.enonce = "Quel "+matcher.group()+" ?";
 			this.bonneReponse= ligne.getLiteral("?nomAnimee").getString();
 
 			int index=0;

@@ -6,6 +6,7 @@ public class QuestionFactory {
 
 	public static Question createQuestion(int categorie)
 	{
+		// si on choisit le sujet mélange
 		if(categorie==10) {
 			Random i = new Random();
 			categorie=i.nextInt(8);

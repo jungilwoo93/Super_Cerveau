@@ -16,13 +16,10 @@ import fr.ensisa.supercerveau.model.questions.QuestionFactory;
 
 public class PanelQuestion{
 	private int sujetChoiced;
-	private int nbPlayer;
-	private int currentPlayer;
 	private int reponseChoix;
 	private Question questions;
 	
-	public PanelQuestion(int nb,int sujet) {
-		this.nbPlayer = nb;
+	public PanelQuestion(int sujet) {
 		this.sujetChoiced = sujet;
 	}
 	//créer un label qui contient la question et les reponses
@@ -129,11 +126,6 @@ public class PanelQuestion{
 		}
 		panneau.setLayout(null);
 		return panneau;
-	}
-	
-	public JLabel setJoueurLabel(int joueur) {
-		currentPlayer=joueur;
-		return new JLabel("Joueur " + joueur +" à Jouer");
 	}
 
 	public int getReponseChoix() {
