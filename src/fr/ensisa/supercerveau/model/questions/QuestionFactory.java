@@ -8,7 +8,7 @@ public class QuestionFactory {
 		Question question;
 		switch(categorie)
 		{
-			case 0 : question = new QuestionRaceChien();
+			case 0 : question = new QuestionFilm();
 			break;
 			case 7: question = new QuestionArtist();
 			break;
