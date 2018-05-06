@@ -13,49 +13,30 @@ public class QuestionFilm extends Question {
 	{
 		super(Constantes.FILM);
 		//Récupère toutes les films et pays
-		String requete = "select ?nomPays ?nomVille where {?pays <http://dbpedia.org/ontology/capital> ?ville. "
-				+ "?pays <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/ontology/Country>. "
-				+ "?pays <http://www.w3.org/2000/01/rdf-schema#label> ?nomPays. "
-				+ "?ville <http://www.w3.org/2000/01/rdf-schema#label> ?nomVille. "
-				+ "FILTER (lang(?nomPays) = 'fr') "
-				+ "FILTER (lang(?nomVille) = 'fr')}";
-		List<QuerySolution> capitales = DBpediaQuery.execRequete(requete);
-		QuerySolution ligne = capitales.get((int)(Math.random()*capitales.size()));
+		String requete = "select ?nom ?type where { ?films a <http://dbpedia.org/ontology/Film>. "
+				+ "?films <http://www.w3.org/2000/01/rdf-schema#label> ?nom. "
+				+ "?films <http://dbpedia.org/ontology/genre> ?genre. "
+				+ "?genre <http://www.w3.org/2000/01/rdf-schema#label> ?type. "
+				+ "FILTER (lang(?nom) = 'fr') "
+				+ "FILTER (lang(?type) = 'fr')}";
+		List<QuerySolution> films = DBpediaQuery.execRequete(requete);
+		QuerySolution ligne = films.get((int)(Math.random()*films.size()));
 
-		if(Math.random()<0.5)
-		{
 
-			this.enonce = "Quelle est la capitale de "+ligne.getLiteral("?nomPays").getString()+" ?";
-			this.bonneReponse= ligne.getLiteral("?nomVille").getString();
 
-			int index=0;
-			while(index<Constantes.NB_REPONSES-1)
-			{
-				ligne = capitales.get((int)(Math.random()*capitales.size()));
-				if(reponseAbsente(ligne.getLiteral("?nomVille").getString()))
-				{
-					this.mauvaisesReponses[index]=ligne.getLiteral("?nomVille").getString();
-					index++;
-				}
-			}
-		}
-		else
-		{
-
-			this.enonce = "De quoi "+ligne.getLiteral("?nomVille").getString()+" est la capitale ?";
-			this.bonneReponse= ligne.getLiteral("?nomPays").getString();
+			this.enonce = "Quelle est le type de film \""+ligne.getLiteral("?nom").getString()+"\" ?";
+			this.bonneReponse= ligne.getLiteral("?type").getString();
 
 			int index=0;
 			while(index<Constantes.NB_REPONSES-1)
 			{
-				ligne = capitales.get((int)(Math.random()*capitales.size()));
-				if(!this.bonneReponse.equalsIgnoreCase(ligne.getLiteral("?nomPays").getString()))
+				ligne = films.get((int)(Math.random()*films.size()));
+				if(reponseAbsente(ligne.getLiteral("?type").getString()))
 				{
-					this.mauvaisesReponses[index]=ligne.getLiteral("?nomPays").getString();
+					this.mauvaisesReponses[index]=ligne.getLiteral("?type").getString();
 					index++;
 				}
 			}
-		}
 
 
 	}
