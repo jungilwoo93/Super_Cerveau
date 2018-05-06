@@ -1,7 +1,11 @@
 package fr.ensisa.supercerveau.model.questions;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.apache.jena.query.QuerySolution;
+
 import fr.ensisa.supercerveau.model.util.Constantes;
 import fr.ensisa.supercerveau.model.util.DBpediaQuery;
 
@@ -23,7 +27,11 @@ public class QuestionDessinAnimee extends Question {
 		{
 
 			this.enonce = ligne.getLiteral("?nomAnimee").getString();
-			this.bonneReponse= ligne.getLiteral("?description").getString();
+			String descriptionCourte = ligne.getLiteral("?description").getString();
+			Pattern pattern = Pattern.compile("(est.*\\.)");
+	        Matcher matcher = pattern.matcher(descriptionCourte);
+	        matcher.find();
+	        this.bonneReponse = matcher.group();
 
 			int index=0;
 			while(index<Constantes.NB_REPONSES-1)
@@ -31,7 +39,10 @@ public class QuestionDessinAnimee extends Question {
 				ligne = animees.get((int)(Math.random()*animees.size()));
 				if(reponseAbsente(ligne.getLiteral("?nomAnimee").getString()))
 				{
-					this.mauvaisesReponses[index]=ligne.getLiteral("?description").getString();
+					descriptionCourte = ligne.getLiteral("?description").getString();
+			        matcher = pattern.matcher(descriptionCourte);
+			        matcher.find();
+			        this.mauvaisesReponses[index]=matcher.group();
 					index++;
 				}
 			}
