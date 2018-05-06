@@ -10,7 +10,7 @@ public class QuestionFactory {
 		{
 			case 0 : question = new QuestionFilm();
 			break;
-			case 7: question = new QuestionArtist();
+			case 7: question = new QuestionActor();
 			break;
 			case 6 : question =new QuestionFilm();
 			break;

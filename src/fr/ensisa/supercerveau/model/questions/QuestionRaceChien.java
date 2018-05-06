@@ -19,7 +19,7 @@ public class QuestionRaceChien extends Question {
 		List<QuerySolution> chiens = DBpediaQuery.execRequete(requete);
 		QuerySolution ligne = chiens.get((int)(Math.random()*chiens.size()));
 
-		this.enonce = "";
+		this.enonce = "Quelle est la race de ce chien ?";
 		this.img = ligne.getLiteral("?img").getString();
 		this.bonneReponse= ligne.getLiteral("?nom").getString();
 
