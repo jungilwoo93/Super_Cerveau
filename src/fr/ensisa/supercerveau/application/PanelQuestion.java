@@ -1,4 +1,4 @@
-package application;
+package fr.ensisa.supercerveau.application;
 
 import java.awt.Color;
 import java.awt.Image;
