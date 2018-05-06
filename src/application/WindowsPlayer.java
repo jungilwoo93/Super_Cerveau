@@ -1,6 +1,7 @@
 package application;
 
 import java.awt.Color;
+import java.awt.Frame;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -9,15 +10,18 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
 import fr.ensisa.supercerveau.model.player.Player;
 import fr.ensisa.supercerveau.model.util.Constantes;
+import fr.ensisa.supercerveau.model.util.ScoreWinException;
 
 
 public class WindowsPlayer extends JFrame{
@@ -34,6 +38,7 @@ public class WindowsPlayer extends JFrame{
 	
 	public WindowsPlayer(int nb,int sujet) throws IOException {
 		super("Super Cerveau");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE );
 		WindowListener l =new WindowAdapter() {
 			public void windowClosing(WindowEvent e){
 				 System.exit(0);
@@ -56,7 +61,12 @@ public class WindowsPlayer extends JFrame{
 		
 		for(int i=0;i<players.size();i++) {
 			JLabel player = new JLabel(players.get(i).getName());
-			JLabel note = new JLabel(players.get(i).getScore().toString());
+			JLabel note = null;
+			try {
+				note = new JLabel(players.get(i).getScore().toString());
+			} catch (ScoreWinException e1) {
+				e1.printStackTrace();
+			}
 			labels.add(player);
 			labels.add(note);
 		}
@@ -111,7 +121,18 @@ public class WindowsPlayer extends JFrame{
 	    					players.get(currentPlayer-1).addPoint();
 	    					Rectangle r = labels.get((currentPlayer-1)*2+1).getBounds();
 	    					labels.get((currentPlayer-1)*2+1).setVisible(false);
-	    					labels.add((currentPlayer-1)*2+1, new JLabel(players.get(currentPlayer-1).getScore().toString()));
+	    					String score;
+	    					try{ //Si le score est superieur a la constante SCORE_WIN, cela génère une exception
+	    						score = players.get(currentPlayer-1).getScore().toString();
+	    					}catch(ScoreWinException scoreEx)
+	    					{	//on demande si il veut continuer a jouer ou quitter l'application
+	    						int option = JOptionPane.showConfirmDialog(null, players.get(currentPlayer-1).getName()+" Est Victorieux. Voulez vous continuer ?", "Victoire!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+	    						score = scoreEx.getMessage();
+	    						if(option != JOptionPane.OK_OPTION){
+	    							System.exit(0);
+	    						}
+	    					}
+	    					labels.add((currentPlayer-1)*2+1, new JLabel(score));
 	    					labels.remove(currentPlayer*2);
 	    					panneau.add(labels.get((currentPlayer-1)*2+1));
 	    					labels.get((currentPlayer-1)*2+1).setBounds(r);
