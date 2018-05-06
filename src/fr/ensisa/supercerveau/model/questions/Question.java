@@ -1,7 +1,6 @@
 package fr.ensisa.supercerveau.model.questions;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
 import fr.ensisa.supercerveau.model.util.Constantes;
 
@@ -10,6 +9,7 @@ public abstract class Question {
 	protected int categorie;
 	protected String enonce;
 	protected String bonneReponse;
+	protected String img;
 	protected int bonneReponseIndex;
 	protected String[] mauvaisesReponses;
 	
@@ -38,6 +38,7 @@ public abstract class Question {
 		}
 		return reponses;
 	}
+	
 	//demander la réponse choisi qui est juste ou pas
 	public boolean demander(int reponseChoix) {
 		if(reponseChoix==bonneReponseIndex)
@@ -49,9 +50,15 @@ public abstract class Question {
 		}
 		return false;
 	}
+	
 	//retourner la question
 	public String returnEnonce() {
 		return this.enonce;
+	}
+	
+	//retourner URL image
+	public String returnURLImg() {
+		return this.img;
 	}
 	
 	protected boolean reponseAbsente(String nouvelleReponse)

@@ -9,6 +9,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -80,10 +81,15 @@ public class WindowsPlayer extends JFrame{
 	        	PanelQuestion panelQuestion = new PanelQuestion(nbPlayer,sujet);
 	        	JButton next=new JButton("Next");
 	        	panneau.add(next);
-	        	next.setBounds(600, 700, 100, 30);
+	        	next.setBounds(600, 900, 100, 30);
 	        	
 	        	if(firstQuestion==0) {
-	        		panel = panelQuestion.setQuestionPanel();
+	        		try {
+						panel = panelQuestion.setQuestionPanel();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 	        		panneau.add(panel);
 		        	panel.setBounds(200, 150, 900, 800);
 		        	panel.setBackground(Color.WHITE);
@@ -116,7 +122,13 @@ public class WindowsPlayer extends JFrame{
 	    				if(currentPlayer==nbPlayer+1) {
 	    					currentPlayer=1;
 	    				}
-	    				panel = panelQuestion.setQuestionPanel();
+						
+	    				try {
+							panel = panelQuestion.setQuestionPanel();
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
+
 	    				joueurAJouer = panelQuestion.setJoueurLabel(currentPlayer);
 	    				
 	    	        	panneau.add(joueurAJouer);
