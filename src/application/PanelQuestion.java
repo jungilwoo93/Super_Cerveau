@@ -44,37 +44,13 @@ public class PanelQuestion{
 		System.out.println("url original : " + urlImg);
 		URL obj =new URL(urlImg);
 		HttpURLConnection con = (HttpURLConnection)obj.openConnection();
-		con.setInstanceFollowRedirects(false);
+		con.setInstanceFollowRedirects(true);
 		con.connect();
-		
-		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-		String line = null;
-		while ( (line = in.readLine()) != null)
-			System.out.println( ">" + line); 
-		//int responseCode = con.getResponseCode();
-		//System.out.println( responseCode );
+		int responseCode = con.getResponseCode();
+		System.out.println( responseCode );
 		String location = con.getHeaderField("Location").toString();
 		System.out.println(location);
-		/*HttpURLConnection conn = (HttpURLConnection) obj.openConnection();
-		Map<String,List<String>> list=conn.getRequestProperties();
-		conn.setConnectTimeout(1500);
-		conn.setReadTimeout(5000);
-		System.out.println(list);
-		conn.addRequestProperty("Accept-Language", "en-US,en;q=0.8");
-		conn.addRequestProperty("User-Agent", "Mozilla");
-		conn.addRequestProperty("Referer", "google.com");
-		String location = conn.getHeaderField("Location");
-		location = URLDecoder.decode(location,"UTF-8");
-		//conn.connect();
-		URL base = new URL(urlImg);
-		URL next = new URL(base,location);
-		next.openConnection();
-		urlImg = next.toExternalForm();
-		InputStream is = conn.getInputStream();
-		String res = conn.getURL().toString();
-		System.out.println("url redirection: " +res);
-		System.out.println("url redirection: " +urlImg);*/
-		ImageIcon img = new ImageIcon(new ImageIcon(location).getImage().getScaledInstance(200, 250, Image.SCALE_DEFAULT));
+		ImageIcon img = new ImageIcon(new ImageIcon(new URL(location)).getImage().getScaledInstance(350, 400, Image.SCALE_DEFAULT));
 		JLabel questionImg = new JLabel(img);
 		JRadioButton reponse1=new JRadioButton(reponses[0]);
 		JRadioButton reponse2=new JRadioButton(reponses[1]);
@@ -87,8 +63,8 @@ public class PanelQuestion{
 		panneau.add(reponse4);
 		panneau.add(questionImg);
 		
-		questionLabel.setBounds(100,40,600,60);
-		questionImg.setBounds(100, 100, 200, 250);
+		questionLabel.setBounds(100,10,600,30);
+		questionImg.setBounds(100, 40, 350, 400);
 		reponse1.setBounds(100, 400, 600, 60);
 		reponse1.setBackground(Color.WHITE);
 		reponse2.setBounds(100, 460, 600, 60);

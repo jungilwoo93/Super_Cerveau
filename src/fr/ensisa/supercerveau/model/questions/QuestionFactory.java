@@ -8,11 +8,11 @@ public class QuestionFactory {
 		Question question;
 		switch(categorie)
 		{
-			case 0 : question = new QuestionFilm();
+			case 0 : question = new QuestionRaceChien();
 			break;
 			case 7: question = new QuestionArtist();
 			break;
-			case 6 : question =new QuestionRaceChien();
+			case 6 : question =new QuestionFilm();
 			break;
 			/*case 0 : 	question=new QuestionCapitale();
 						break;
