@@ -12,7 +12,7 @@ public class QuestionFactory {
 			break;
 			case 7: question = new QuestionArtist();
 			break;
-			case 6 :	question =new QuestionRaceChien();
+			case 6 : question =new QuestionRaceChien();
 			break;
 			/*case 0 : 	question=new QuestionCapitale();
 						break;
