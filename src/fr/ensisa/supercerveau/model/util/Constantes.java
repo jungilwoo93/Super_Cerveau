@@ -8,6 +8,7 @@ public abstract class Constantes {
 	public static final int NB_QUESTIONS=10;
 	public static final int NB_QUESTIONS_TOTAL=40;
 	
+	
 	/**
 	 * Nombre de point avant la victoire
 	 */
