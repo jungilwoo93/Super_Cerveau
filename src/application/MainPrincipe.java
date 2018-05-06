@@ -31,7 +31,8 @@ public class MainPrincipe extends JFrame{
 	
 	public MainPrincipe() throws IOException {
 		super("Super Cerveau");//titre de la fenêtre
-		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE );
+
 		WindowListener l =new WindowAdapter() {
 			public void windowClosing(WindowEvent e){
 				 System.exit(0);

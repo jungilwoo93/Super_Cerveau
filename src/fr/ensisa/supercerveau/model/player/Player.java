@@ -1,5 +1,8 @@
 package fr.ensisa.supercerveau.model.player;
 
+import fr.ensisa.supercerveau.model.util.Constantes;
+import fr.ensisa.supercerveau.model.util.ScoreWinException;
+
 public class Player {
 	private String name;
 	private Score score;
@@ -14,7 +17,10 @@ public class Player {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Score getScore() {
+	public Score getScore() throws ScoreWinException {
+		if(this.score.getScore() >= Constantes.SCORE_WIN) {
+			throw new ScoreWinException(this.score.getScore()+"");
+		}
 		return score;
 	}
 	public void setScore(Score score) {

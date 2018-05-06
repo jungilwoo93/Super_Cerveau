@@ -11,7 +11,7 @@ public abstract class Constantes {
 	/**
 	 * Nombre de point avant la victoire
 	 */
-	public static final int SCORE_WIN = 20;
+	public static final int SCORE_WIN = 1;
 	
 	/**
 	 * Nombre de réponses proposées pour chaque question
