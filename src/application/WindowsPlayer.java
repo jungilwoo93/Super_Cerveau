@@ -1,7 +1,6 @@
 package application;
 
 import java.awt.Color;
-import java.awt.Frame;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -11,14 +10,12 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
 import fr.ensisa.supercerveau.model.player.Player;
 import fr.ensisa.supercerveau.model.util.Constantes;
 import fr.ensisa.supercerveau.model.util.ScoreWinException;
@@ -74,8 +71,10 @@ public class WindowsPlayer extends JFrame{
 		ImageIcon img = new ImageIcon(new ImageIcon("src\\image\\logo.png").getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT));
 		JLabel logo = new JLabel(img);
 		panneau.add(logo);
+		
 		JButton play=new JButton("Play !");
 		panneau.add(play);
+		
 		JLabel question =new JLabel("Questions sur le sujet : ");
 		JLabel sujetChoix = new JLabel(sujets[sujetChoiced]);
 		panneau.add(question);
@@ -94,22 +93,26 @@ public class WindowsPlayer extends JFrame{
 	        	
 	        	next.setBounds(play.getBounds().getBounds()); //on place le bouton next sur les coordonnées du bouton play
 	        	play.setVisible(false); //on cache le bouton play
+	        	
 	        	if(firstQuestion==0) {
 	        		try {
 						panel = panelQuestion.setQuestionPanel();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 	        		panneau.add(panel);
 		        	panel.setBounds(200, 150, 900, 800);
 		        	panel.setBackground(Color.WHITE);
 	        	}
-
+	        	
+	        	//afficher le joueur qui va repondre à la question
 	        	if(currentPlayer==1) {
+	        		System.out.println("coucou");
 	        		joueurAJouer = panelQuestion.setJoueurLabel(1);
     	        	panneau.add(joueurAJouer);
     	        	joueurAJouer.setBounds(300, 800, 300, 30);
+    	        	joueurAJouer.setVisible(true);
+    	        	
 	        	}
 	        	
 	        	next.addActionListener(new ActionListener() {
@@ -152,7 +155,6 @@ public class WindowsPlayer extends JFrame{
 						}
 
 	    				joueurAJouer = panelQuestion.setJoueurLabel(currentPlayer);
-	    				
 	    	        	panneau.add(joueurAJouer);
 	    				panneau.add(panel);
 			        	panel.setBounds(200, 150, 900, 800);

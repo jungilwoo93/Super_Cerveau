@@ -10,6 +10,7 @@ import java.awt.event.WindowListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -48,23 +49,35 @@ public class MainPrincipe extends JFrame{
 		jCombo.setBackground(Color.WHITE);
 		jCombo.setSelectedIndex(0);//le premier élément (nb 1) est par défaut
 		
+		//action de JCombo, enregistrer le nb choisi de joueur dans les objets globals
+		jCombo.addActionListener(new ActionListener () {
+		    public void actionPerformed(ActionEvent e) {
+		    	nbPlayer = jCombo.getSelectedIndex()+1; // nb de joueur qu'on choisit
+		    }
+		});
+		
 		//un JCombobox pour le sujet
 		JLabel sujet = new JLabel("Sujets");
 		JComboBox sujetCombo = new JComboBox(sujets);
 		sujetCombo.setSelectedIndex(0);
 		
+		//action de JCombo, enregistrer le sujet choisi dans les objets globals
+		sujetCombo.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				sujetChoiced = sujetCombo.getSelectedIndex();
+				// sujet qu'on choisit
+				if(sujetChoiced==Constantes.HAZARD) {
+					//si on veux un sujet au hazard
+					Random i = new Random();
+					sujetChoiced = i.nextInt(8);
+				}
+			}
+		});
+		
 		//l'image logo 
 		BufferedImage logoImage=ImageIO.read(new File("src\\image\\logo.png"));
 		JLabel logo = new JLabel(new ImageIcon(logoImage));
-		
-		//action de JCombo, enregistrer le nb choisi de joueur et le sujet choisi dans les objets globals
-		jCombo.addActionListener(new ActionListener () {
-		    public void actionPerformed(ActionEvent e) {
-		    	nbPlayer = jCombo.getSelectedIndex()+1; // nb de joueur qu'on choisit
-		    	sujetChoiced = sujetCombo.getSelectedIndex(); // sujet qu'on choisit
-		    	//le niveau de jeux qu'on choisit
-		    }
-		});
 		
 		//un bouton pour lancer le quiz et ses actions
 		JButton button = new JButton("Let's go!");

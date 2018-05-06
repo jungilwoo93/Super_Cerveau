@@ -21,12 +21,12 @@ public class QuestionPeinture extends Question {
 				+ "FILTER (lang(?nomAutheur) = 'fr'). } ";
 		List<QuerySolution> arts = DBpediaQuery.execRequete(requete);
 		QuerySolution ligne = arts.get((int)(Math.random()*arts.size()));
-		System.out.println(arts.size());
-
-		if(Math.random()<0.5)
+		
+		double random=Math.random();
+		if(random<0.25)
 		{
-
 			this.enonce = "L'autheur de \" "+ligne.getLiteral("?nomPeinture").getString()+" \" est : ";
+			//this.img =
 			this.bonneReponse= ligne.getLiteral("?nomAutheur").getString();
 
 			int index=0;
@@ -40,7 +40,7 @@ public class QuestionPeinture extends Question {
 				}
 			}
 		}
-		else
+		else if(random>=0.25&&random<0.5)
 		{
 
 			this.enonce = "Quel est le peinture de "+ligne.getLiteral("?nomAutheur").getString()+" ?";
@@ -56,6 +56,10 @@ public class QuestionPeinture extends Question {
 					index++;
 				}
 			}
+		}else if(random>=0.5&&random<0.75) {
+			
+		}else {
+			
 		}
 
 

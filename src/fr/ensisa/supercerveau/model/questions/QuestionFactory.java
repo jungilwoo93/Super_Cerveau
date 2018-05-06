@@ -1,25 +1,38 @@
 package fr.ensisa.supercerveau.model.questions;
 
+import java.util.Random;
+
 public class QuestionFactory {
 
 	public static Question createQuestion(int categorie)
 	{
-		//int questionType= (int)(Math.random()*3);
+		if(categorie==10) {
+			Random i = new Random();
+			categorie=i.nextInt(8);
+		}
 		Question question;
 		switch(categorie)
 		{
 			case 0 : question = new QuestionFilm();
 			break;
-			case 7: question = new QuestionActor();
+			case 1 : question = new QuestionCapitale();
 			break;
-			case 6 : question =new QuestionFilm();
+			case 2 : question = new QuestionRoiEtPredecesseur();
 			break;
-			/*case 0 : 	question=new QuestionCapitale();
-						break;
-			case 1 :	question=new QuestionRoiEtPredecesseur();
-			break;	*/		
-			default : 	question= new QuestionChampionnatFranceFootball();
-						break;
+			case 3 : question= new QuestionChampionnatFranceFootball();
+			break;
+			case 4 : question = new QuestionDessinAnimee();
+			break;
+			case 5 : question = new QuestionPeinture();
+			break;
+			case 6 : question = new QuestionRaceChien();
+			break;
+			case 7 : question = new QuestionActor();
+			break;
+			case 8: question = new QuestionChanteur();
+			break;			
+			default:question = new QuestionActor();
+			break;
 		}
 		return question;
 	}

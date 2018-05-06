@@ -4,23 +4,13 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLDecoder;
-import java.util.List;
-import java.util.Map;
-
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-
 import fr.ensisa.supercerveau.model.questions.Question;
 import fr.ensisa.supercerveau.model.questions.QuestionFactory;
 
@@ -58,10 +48,7 @@ public class PanelQuestion{
 			HttpURLConnection con = (HttpURLConnection)obj.openConnection();
 			con.setInstanceFollowRedirects(true);
 			con.connect();
-			int responseCode = con.getResponseCode();
-			System.out.println( responseCode );
 			String location = con.getHeaderField("Location").toString();
-			System.out.println(location);
 			ImageIcon img = new ImageIcon(new ImageIcon(new URL(location)).getImage().getScaledInstance(350, 400, Image.SCALE_DEFAULT));
 			JLabel questionImg = new JLabel(img);
 			panneau.add(questionImg);
@@ -130,6 +117,7 @@ public class PanelQuestion{
 		if(!reponse1.isSelected()&&!reponse2.isSelected()&&!reponse3.isSelected()&&!reponse4.isSelected()) {
 			setReponseChoix(-1);
 		}
+		panneau.setLayout(null);
 		return panneau;
 	}
 	
