@@ -2,6 +2,7 @@ package fr.ensisa.supercerveau.application;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -76,7 +77,7 @@ public class MainPrincipe extends JFrame{
 		});
 		
 		//l'image logo 
-		BufferedImage logoImage=ImageIO.read(new File("src\\image\\logo.png"));
+		BufferedImage logoImage=ImageIO.read(new File("src\\fr\\ensisa\\supercerveau\\model\\image\\logo.png"));
 		JLabel logo = new JLabel(new ImageIcon(logoImage));
 		
 		//un bouton pour lancer le quiz et ses actions

@@ -28,7 +28,7 @@ public class QuestionDessinAnimee extends Question {
 
 			this.enonce = ligne.getLiteral("?nomAnimee").getString();
 			String descriptionCourte = ligne.getLiteral("?description").getString();
-			Pattern pattern = Pattern.compile("(est.*\\.)");
+			Pattern pattern = Pattern.compile("(est.*\\.)"); //on garde seulement la description
 	        Matcher matcher = pattern.matcher(descriptionCourte);
 	        matcher.find();
 	        this.bonneReponse = matcher.group();
