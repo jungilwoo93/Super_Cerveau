@@ -22,16 +22,16 @@ Repository git du projet: [https://git.chabalier.com/snowert/Super_Cerveau)
 
 <u>II) Fonctionnement:</u>
 ----------
-Réalisé en Swing, l'interface est composé de deux fenètres, la [fenètre principale](https://git.chabalier.com/snowert/Super_Cerveau/src/master/src/fr/ensisa/supercerveau/application/MainPrincipe.java) donne le choix du nombre de joueur
-et des différents sujets, puis lance la [fenètre de jeu](https://git.chabalier.com/snowert/Super_Cerveau/src/master/src/fr/ensisa/supercerveau/application/WindowsPlayer.java).
-Apres le demarrage de la partie, la gestion des questions est effectuée par la classe [PanelQuestion](https://git.chabalier.com/snowert/Super_Cerveau/src/master/src/fr/ensisa/supercerveau/application/PanelQuestion.java)
+Réalisé en Swing, l'interface est composé de deux fenètres, la [fenètre principale](https://git.chabalier.com/snowert/Super_Cerveau/src/master/Pan_Chabalier_Super_Cerveau/src/fr/ensisa/supercerveau/application/MainPrincipe.java) donne le choix du nombre de joueur
+et des différents sujets, puis lance la [fenètre de jeu](https://git.chabalier.com/snowert/Super_Cerveau/src/master/Pan_Chabalier_Super_Cerveau/src/fr/ensisa/supercerveau/application/WindowsPlayer.java).
+Apres le demarrage de la partie, la gestion des questions est effectuée par la classe [PanelQuestion](https://git.chabalier.com/snowert/Super_Cerveau/src/master/Pan_Chabalier_Super_Cerveau/src/fr/ensisa/supercerveau/application/PanelQuestion.java)
 
-Lorsque un joueur atteint 10 points (Definit dans [Constantes](https://git.chabalier.com/snowert/Super_Cerveau/src/master/src/fr/ensisa/supercerveau/model/util/Constantes.java)) le jeu
+Lorsque un joueur atteint 10 points (Definit dans [Constantes](https://git.chabalier.com/snowert/Super_Cerveau/src/master/Pan_Chabalier_Super_Cerveau/src/fr/ensisa/supercerveau/model/util/Constantes.java)) le jeu
 s'arrete et propose de continuer pour atteindre un meilleur score ou s'arreter.
 
 Lors du lancement du programme, on initialise l'affichage et on attend la saisie des joueurs et des questions pour laisser [WindowsPlayer](https://git.chabalier.com/snowert/Super_Cerveau/src/master/src/fr/ensisa/supercerveau/application/WindowsPlayer.java)
-prendre le relai. [WindowsPlayer](https://git.chabalier.com/snowert/Super_Cerveau/src/master/src/fr/ensisa/supercerveau/application/WindowsPlayer.java) initialise l'interface de jeu. lorsque l'utilisateur lance la partie, [PanelQuestion](https://git.chabalier.com/snowert/Super_Cerveau/src/master/src/fr/ensisa/supercerveau/application/PanelQuestion.java) utilise la
-[QuestionFactory](https://git.chabalier.com/snowert/Super_Cerveau/src/master/src/fr/ensisa/supercerveau/model/questions/QuestionFactory.java) pour créer les questions et réponses et permettre leur affichage
+prendre le relai. [WindowsPlayer](https://git.chabalier.com/snowert/Super_Cerveau/src/master/Pan_Chabalier_Super_Cerveau/src/fr/ensisa/supercerveau/application/WindowsPlayer.java) initialise l'interface de jeu. lorsque l'utilisateur lance la partie, [PanelQuestion](https://git.chabalier.com/snowert/Super_Cerveau/src/master/Pan_Chabalier_Super_Cerveau/src/fr/ensisa/supercerveau/application/PanelQuestion.java) utilise la
+[QuestionFactory](https://git.chabalier.com/snowert/Super_Cerveau/src/master/Pan_Chabalier_Super_Cerveau/src/fr/ensisa/supercerveau/model/questions/QuestionFactory.java) pour créer les questions et réponses et permettre leur affichage
 
 La factory initialise la nouvelle question. Celle ci interroge DBpedia par le biais d'une requète et récupère les informations nécessaire.
 
